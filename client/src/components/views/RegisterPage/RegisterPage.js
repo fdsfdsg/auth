@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { withRouter} from 'react-router-dom';
 import { registerUser } from "../../../_actions/user_action";
-import { useHistory } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 
 const LoginPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");

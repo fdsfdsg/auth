@@ -34,7 +34,8 @@ export function auth() {
 export function logout() {
   const request = axios
     .get("/api/users/logout")
-    .then((response) => response.data);
+    .then((response) => response.data)
+    
   return {
     type: LOGOUT_USER,
     payload: request,

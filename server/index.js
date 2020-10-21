@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 const mongoose = require("mongoose");
-const { request } = require("express");
 mongoose
   .connect(config.mongoURI, {
     useNewUrlParser: true,

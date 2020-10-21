@@ -1,16 +1,25 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { logout } from "../../../_actions/user_action";
+import { withRouter, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-const LandingPage = (props) => {
+const LandingPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     axios.get("/api/hello").then((res) => console.log(res));
   }, []);
 
   const onClickHandler = () => {
-    dispatch(logout());
+    axios.get(`/api/users/logout`).then((response) => {
+        console.log(response)
+      if (response.data.success) {
+        history.push("/login");
+      } else {
+        alert("로그아웃 하는데 실패 했습니다.");
+      }
+    });
   };
 
   return (
@@ -23,10 +32,11 @@ const LandingPage = (props) => {
         height: "100vh",
       }}
     >
-      시작 페이지
+      <h2>시작 페이지</h2>
+
       <button onClick={onClickHandler}>로그아웃</button>
     </div>
   );
 };
 
-export default LandingPage;
+export default withRouter(LandingPage);

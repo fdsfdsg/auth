@@ -17,14 +17,14 @@ export default function (SpecificComponent, option, adminRoute = null) {
         if (!response.payload.isAuth) {
           if (option) {
             history.push("/login");
+          }
+        } else {
+          //로그인 한 상태
+          if (adminRoute && !response.payload.isAdmin) {
+            history.push("/");
           } else {
-            //로그인 한 상태
-            if (adminRoute && !response.payload.isAdmin) {
+            if (option === false) {
               history.push("/");
-            } else {
-              if (option === false) {
-                history.push("/");
-              }
             }
           }
         }
